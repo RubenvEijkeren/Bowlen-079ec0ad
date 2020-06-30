@@ -12,7 +12,8 @@ class Player {
         $this->pinsThrown = 0;
     }
 
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 

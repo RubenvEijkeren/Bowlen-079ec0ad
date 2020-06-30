@@ -42,7 +42,7 @@ class BowlingGame
 
     private function playRound()
     {
-            for ($i = 0;$i < count($this->players);$i++) {
+        for ($i = 0; $i < count($this->players); $i++) {
             $throw1 = readline("Round " . $this->round . ": " . $this->players[$i]->getName() . " it's your turn, how many pins did you hit with your first throw?");
             if ($throw1 < 10) {
                 $throw2 = readline($this->players[$i]->getName() . " it's still your turn, how many pins did you hit with your second throw?");
@@ -80,9 +80,8 @@ class BowlingGame
             $this->playRound();
             $this->round++;
         }
-        for ($i = 0;$i < count($this->players);$i++) {
+        for ($i = 0; $i < count($this->players); $i++) {
             if ($this->scoreBoard->scores[$this->players[$i]->getName()][10][0] == 10) {
-                //echo PHP_EOL . $this->players[$i]->getName() . " threw a strike in turn 10" . PHP_EOL;
                 $this->playLastRound($this->players[$i]->getName(), 2);
             } elseif ($this->scoreBoard->scores[$this->players[$i]->getName()][10][0] + $this->scoreBoard->scores[$this->players[$i]->getName()][10][1] == 10) {
                 $this->playLastRound($this->players[$i]->getName(), 1);
