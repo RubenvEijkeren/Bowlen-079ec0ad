@@ -53,9 +53,25 @@ class BowlingGame
         }
     }
 
-    private function playLastRound()
+    private function playLastRound($player, $throws)
     {
-        // TODO
+        if ($throws == 2) {
+            echo "Final round! you threw a strike on round 10 so you get to throw two more balls!" . PHP_EOL ;
+            $throw1 = readline($player . " how many pins did you hit with your first throw?");
+            $throw2 = readline($player . " how many pins did you hit with your second throw?");
+            if ($this->scoreBoard->scores[$player][10][0] == 10) {
+                $this->scoreBoard->scores[$player][10][2] += $throw1 + $throw2;
+                if ($this->scoreBoard->scores[$player][9][0] == 10) {
+                    $this->scoreBoard->scores[$player][9][2] += $throw1;
+                    $this->scoreBoard->scores[$player][10][2] += $throw2;
+                }
+            }
+        }
+        if ($throws == 1) {
+            echo "Final round! you threw a spare on round 10 so you get to throw one more ball!" . PHP_EOL;
+            $throw1 = readline($player . " how many pins did you hit with your throw?");
+            $this->scoreBoard->scores[$player][10][2] += $throw1;
+        }
     }
 
     private function playAllRounds()
@@ -64,7 +80,15 @@ class BowlingGame
             $this->playRound();
             $this->round++;
         }
-//        var_dump($this->players);
+        for ($i = 0;$i < count($this->players);$i++) {
+            if ($this->scoreBoard->scores[$this->players[$i]->getName()][10][0] == 10) {
+                //echo PHP_EOL . $this->players[$i]->getName() . " threw a strike in turn 10" . PHP_EOL;
+                $this->playLastRound($this->players[$i]->getName(), 2);
+            } elseif ($this->scoreBoard->scores[$this->players[$i]->getName()][10][0] + $this->scoreBoard->scores[$this->players[$i]->getName()][10][1] == 10) {
+                $this->playLastRound($this->players[$i]->getName(), 1);
+            }
+        }
         $this->scoreBoard->displayScores();
+        $this->scoreBoard->displayWinner();
     }
 }
