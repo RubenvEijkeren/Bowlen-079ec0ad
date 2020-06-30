@@ -3,12 +3,12 @@ require_once 'BowlingGame.class.php';
 require_once 'Player.class.php';
 require_once 'bowlen.php';
 
-class ScoreBoard {
+class ScoreBoard
+{
     public $scores = array();
 
     public function __construct($players)
     {
-
     }
 
     public function calculatePlayerScore($player, $round, $throw1, $throw2 = 0)
@@ -21,7 +21,7 @@ class ScoreBoard {
                 $this->scores[$player][$round - 2][2] += $throw1;
                 $this->scores[$player][$round - 1][2] += $throw1;
             }
-        } elseif ($round > 1 && ($this->scores[$player][$round-1][0] + $this->scores[$player][$round - 1][1]) == 10) {
+        } elseif ($round > 1 && ($this->scores[$player][$round - 1][0] + $this->scores[$player][$round - 1][1]) == 10) {
             $this->scores[$player][$round - 1][2] += $throw1;
         }
         $this->scores[$player][$round][2] = intval($throw1) + intval($throw2) + $this->scores[$player][$round - 1][2];
