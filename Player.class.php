@@ -2,7 +2,8 @@
 require_once 'ScoreBoard.class.php';
 require_once 'BowlingGame.class.php';
 
-class Player {
+class Player
+{
     public $name;
     public $pinsThrown;
 
