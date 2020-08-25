@@ -1,7 +1,4 @@
 <?php
-require_once 'BowlingGame.class.php';
-require_once 'Player.class.php';
-require_once 'bowlen.php';
 
 class ScoreBoard
 {
@@ -18,8 +15,8 @@ class ScoreBoard
         if ($round > 1 && $this->scores[$player][$round - 1][0] == 10) {
             $this->scores[$player][$round - 1][2] += $throw1 + $throw2;
             if ($round > 2 && $this->scores[$player][$round - 2][0] == 10) {
-                $this->scores[$player][$round - 2][2] += $throw1;
-                $this->scores[$player][$round - 1][2] += $throw1;
+                $this->scores[$player][$round - 2][2] += $throw1; // voegt 10 toe aan twee worpen terug
+                $this->scores[$player][$round - 1][2] += $throw1; // en aan de vorige worp
             }
         } elseif ($round > 1 && ($this->scores[$player][$round - 1][0] + $this->scores[$player][$round - 1][1]) == 10) {
             $this->scores[$player][$round - 1][2] += $throw1;
